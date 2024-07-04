@@ -15,12 +15,18 @@ class ListNode {
 }
 
 function mergeNodes(head: ListNode | null): ListNode | null {
+  //start at the start
   let currentNode = head!;
+  //continue until end of list
   while (currentNode.next) {
+    //if next.next is null, we are at the end of the list and replace the ending 0 with null to cut it off
     if (!currentNode.next.next) currentNode.next = null;
+    //whenver we hit any other 0, add a link to the list
     else if (currentNode.next.val === 0) currentNode = currentNode.next;
     else {
+      //otherwise, accumulate the value of the next node
       currentNode.val += currentNode?.next.val;
+      //...and skip over it
       currentNode.next = currentNode?.next.next;
     }
   }
